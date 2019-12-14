@@ -90,8 +90,9 @@ testImplementation("au.com.dius:pact-jvm-consumer-junit_2.11:3.5.0")
 ## Provider in Java with Micronaut
 
 1. Apply the `id "au.com.dius.pact" version "4.0.0"` to the provider Gradle
-  build.
+   build.
 2. Add the following dependencies for the Micronaut framework:
+
 ```groovy
 annotationProcessor platform("io.micronaut:micronaut-bom:$micronautVersion")
 annotationProcessor "io.micronaut:micronaut-inject-java"
@@ -105,12 +106,14 @@ implementation "io.micronaut:micronaut-http-server-netty"
 implementation "io.micronaut:micronaut-http-client"
 runtimeOnly "ch.qos.logback:logback-classic:1.2.3"
 ```
-3.  The `micronautVersion` can be set to the current stable version in the `settings.gradle.kts`
-4. Write a `provider` configuration to point to _localhost:8080_.
-5. Implement `startProviderTask` and `terminateProviderTask` hooks to start/stop
-   the running server.
+
+3. The `micronautVersion` can be set to the current stable version in the
+   `settings.gradle.kts`
+4. Write a `provider` configuration to point to _localhost:8080_ and reference
+   the pact contract file.
+5. Implement `startProviderTask` and `terminateProviderTask` hooks to
+   start/stop the running server.
 6. Write an `Application` bootstrap class.
 7. Write a `WeatherController` class to serve back the above JSON response for
    given longitude, latitude and appid parameters.
-
 
