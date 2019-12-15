@@ -41,3 +41,34 @@ shadowJar {
 run.classpath += configurations.developmentOnly
 run.jvmArgs('-noverify', '-XX:TieredStopAtLevel=1', '-Dcom.sun.management.jmxremote')
 
+// This will be called before the provider task
+task('startTheApp') {
+    doLast {
+        //start up your provider here
+    }
+}
+
+// This will be called after the provider task
+task('killTheApp') {
+    doLast {
+        // kill your provider here
+    }
+}
+
+pact {
+    serviceProviders {
+        weatherProvider {
+            protocol = 'http'
+            host = 'localhost'
+            port = 8080
+            path = '/'
+
+            startProviderTask = startTheApp
+            terminateProviderTask = killTheApp
+
+            hasPactWith('user-consumer') {
+                pactFile = file('../consumer/target/pacts/weather-consumer-weather-provider.json')
+            }
+        }
+    }
+}
