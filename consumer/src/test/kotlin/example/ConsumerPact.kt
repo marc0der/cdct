@@ -11,50 +11,43 @@ import java.util.*
 
 class ConsumerPact : ConsumerPactTestMk2() {
 
-    override fun providerName(): String = "user-data-provider"
+    override fun providerName(): String = "weather-provider"
 
-    override fun consumerName(): String = "user-data-consumer"
+    override fun consumerName(): String = "weather-consumer"
 
     fun String.toUUID(): UUID = UUID.fromString(this)
 
-    fun body(
-        ssn: UUID,
-        firstName: String,
-        lastName: String,
-        age: Int
-    ): PactDslJsonBody =
+    val cityId = 1851632
+
+    fun buildBody(id: Int): PactDslJsonBody =
         PactDslJsonBody()
-            .uuid("ssn", ssn)
-            .stringType("firstName", firstName)
-            .stringType("lastName", lastName)
-            .numberType("age", age)
+            .numberType("id", id)
+            .stringType("name", "Shuzenji")
+            .numberType("timezone", 32400)
+            .`object`("wind").numberType("speed", 0.47).numberType("deg", 107.538).closeObject()
+            .`object`("clouds").numberType("all", 2).closeObject()
+            .`object`("main").numberType("temp", 289.92).numberType("pressure", 1009).numberType(
+                "humidity",
+                92
+            ).numberType("temp_min", 288.71).numberType("temp_max", 290.93).closeObject()
+            .`object`("weather").stringType("main", "Clear").stringType("description", "clear sky").closeObject()
+            .asBody()
 
     override fun createPact(builder: PactDslWithProvider): RequestResponsePact =
-        builder.uponReceiving("can get user data from user data provider")
+        builder.uponReceiving("can get weather data from weather data provider by city id")
             .matchPath(
-                "/users/(.*)",
-                "/users/32fadd88-4d61-402d-8d80-2679f12b5c66"
+                "/weather/(.*)",
+                "/weather/1851632"
             )
             .method("GET")
             .willRespondWith()
             .status(200)
-            .body(
-                body(
-                    "042534a4-e998-4ac0-98da-91f4af65cc94".toUUID(),
-                    "John",
-                    "West",
-                    49
-                )
-            )
+            .body(buildBody(cityId))
             .toPact()
 
     override fun runTest(mockServer: MockServer) {
-
-        val client = UserClient(mockServer.getUrl())
-
-        val result = client.getById("32fadd88-4d61-402d-8d80-2679f12b5c66")
-
-        when (result) {
+        val client = WeatherClient(mockServer.getUrl())
+        when (val result = client.getById(cityId)) {
             is Result.Failure ->
                 fail(result.getException().message)
             is Result.Success ->

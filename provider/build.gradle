@@ -91,7 +91,7 @@ pact {
             terminateProviderTask = killTheApp
 
             hasPactWith('user-consumer') {
-                pactFile = file('../consumer/target/pacts/user-data-consumer-user-data-provider.json')
+                pactFile = file('../consumer/target/pacts/weather-consumer-weather-provider.json')
             }
         }
     }

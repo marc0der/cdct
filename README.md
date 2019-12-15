@@ -14,49 +14,34 @@ only serves to demonstrate consumer contracts between two applications.
 This repository contains two modules, one for the _consumer_ and another for
 the _provider_.
 
-The API that we will develop should be an HTTP GET endpoint, taking two query parameters
-`lat` and `lon` which are coordinates of the location of interest. In addition,
+The API that we will develop should be an HTTP GET endpoint, taking a query parameter
+`id` which is the cityId of the location of interest. In addition,
 we should accommodate an `appid` parameter, used to identify the consumer with the API.
 The API should then respond with the following JSON response body:
 
 ```json
-{"coord": { "lon": 139,"lat": 35},
-  "weather": [
-    {
-      "id": 800,
-      "main": "Clear",
-      "description": "clear sky",
-      "icon": "01n"
-    }
-  ],
-  "base": "stations",
-  "main": {
-    "temp": 289.92,
-    "pressure": 1009,
-    "humidity": 92,
-    "temp_min": 288.71,
-    "temp_max": 290.93
-  },
-  "wind": {
-    "speed": 0.47,
-    "deg": 107.538
-  },
+{
   "clouds": {
     "all": 2
   },
-  "dt": 1560350192,
-  "sys": {
-    "type": 3,
-    "id": 2019346,
-    "message": 0.0065,
-    "country": "JP",
-    "sunrise": 1560281377,
-    "sunset": 1560333478
-  },
-  "timezone": 32400,
   "id": 1851632,
+  "main": {
+    "humidity": 92,
+    "pressure": 1009,
+    "temp": 289.92,
+    "temp_max": 290.93,
+    "temp_min": 288.71
+  },
   "name": "Shuzenji",
-  "cod": 200
+  "timezone": 32400,
+  "weather": {
+    "description": "clear sky",
+    "main": "Clear"
+  },
+  "wind": {
+    "deg": 107.538,
+    "speed": 0.47
+  }
 }
 ```
 
