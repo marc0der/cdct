@@ -15,8 +15,7 @@ This repository contains two modules, one for the _consumer_ and another for
 the _provider_.
 
 The API that we will develop should be an HTTP GET endpoint, taking a query parameter
-`id` which is the cityId of the location of interest. In addition,
-we should accommodate an `appid` parameter, used to identify the consumer with the API.
+`id` which is the cityId of the location of interest.
 The API should then respond with the following JSON response body:
 
 ```json
