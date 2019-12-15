@@ -1,0 +1,175 @@
+{
+    "provider": {
+        "name": "weather-provider"
+    },
+    "consumer": {
+        "name": "weather-consumer"
+    },
+    "interactions": [
+        {
+            "description": "can get weather data from weather data provider by city id",
+            "request": {
+                "method": "GET",
+                "path": "/weather/1851632",
+                "matchingRules": {
+                    "path": {
+                        "": {
+                            "matchers": [
+                                {
+                                    "match": "regex",
+                                    "regex": "/weather/(.*)"
+                                }
+                            ],
+                            "combine": "AND"
+                        }
+                    }
+                }
+            },
+            "response": {
+                "status": 200,
+                "headers": {
+                    "Content-Type": "application/json; charset=UTF-8"
+                },
+                "body": {
+                    "clouds": {
+                        "all": 2
+                    },
+                    "id": 1851632,
+                    "main": {
+                        "humidity": 92,
+                        "pressure": 1009,
+                        "temp": 289.92,
+                        "temp_max": 290.93,
+                        "temp_min": 288.71
+                    },
+                    "name": "Shuzenji",
+                    "timezone": 32400,
+                    "weather": {
+                        "description": "clear sky",
+                        "main": "Clear"
+                    },
+                    "wind": {
+                        "deg": 107.538,
+                        "speed": 0.47
+                    }
+                },
+                "matchingRules": {
+                    "body": {
+                        "$.id": {
+                            "matchers": [
+                                {
+                                    "match": "number"
+                                }
+                            ],
+                            "combine": "AND"
+                        },
+                        "$.name": {
+                            "matchers": [
+                                {
+                                    "match": "type"
+                                }
+                            ],
+                            "combine": "AND"
+                        },
+                        "$.timezone": {
+                            "matchers": [
+                                {
+                                    "match": "number"
+                                }
+                            ],
+                            "combine": "AND"
+                        },
+                        "$.wind.speed": {
+                            "matchers": [
+                                {
+                                    "match": "number"
+                                }
+                            ],
+                            "combine": "AND"
+                        },
+                        "$.wind.deg": {
+                            "matchers": [
+                                {
+                                    "match": "number"
+                                }
+                            ],
+                            "combine": "AND"
+                        },
+                        "$.clouds.all": {
+                            "matchers": [
+                                {
+                                    "match": "number"
+                                }
+                            ],
+                            "combine": "AND"
+                        },
+                        "$.main.temp": {
+                            "matchers": [
+                                {
+                                    "match": "number"
+                                }
+                            ],
+                            "combine": "AND"
+                        },
+                        "$.main.pressure": {
+                            "matchers": [
+                                {
+                                    "match": "number"
+                                }
+                            ],
+                            "combine": "AND"
+                        },
+                        "$.main.humidity": {
+                            "matchers": [
+                                {
+                                    "match": "number"
+                                }
+                            ],
+                            "combine": "AND"
+                        },
+                        "$.main.temp_min": {
+                            "matchers": [
+                                {
+                                    "match": "number"
+                                }
+                            ],
+                            "combine": "AND"
+                        },
+                        "$.main.temp_max": {
+                            "matchers": [
+                                {
+                                    "match": "number"
+                                }
+                            ],
+                            "combine": "AND"
+                        },
+                        "$.weather.main": {
+                            "matchers": [
+                                {
+                                    "match": "type"
+                                }
+                            ],
+                            "combine": "AND"
+                        },
+                        "$.weather.description": {
+                            "matchers": [
+                                {
+                                    "match": "type"
+                                }
+                            ],
+                            "combine": "AND"
+                        }
+                    }
+                }
+            }
+        }
+    ],
+    "metadata": {
+        "pact-specification": {
+            "version": "3.0.0"
+        },
+        "pact-jvm": {
+            "version": "3.5.0"
+        }
+    }
+}

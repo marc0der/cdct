@@ -103,3 +103,16 @@ runtimeOnly "ch.qos.logback:logback-classic:1.2.3"
 7. Write a `WeatherController` class to serve back the above JSON response for
    given longitude, latitude and appid parameters.
 
+## Running from the command line
+
+```bash
+$ ./gradlew :consumer:test
+$ cat consumer/target/pacts/weather-consumer-weather-provider.json
+$ ./gradlew :provider:run
+```
+
+Open a new terminal in the project directory and:
+
+```bash
+$ ./gradlew :provider:pactVerify
+```
