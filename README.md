@@ -5,18 +5,18 @@ using the [pact-jvm](https://github.com/DiUS/pact-jvm) framework.
 
 This project aims to mimic a contract between an Android weather app and a
 weather API. We will be building the bare minimum of components for this to
-work. This includes an HTTP Client to call our API, as well a tiny
-[Micronaut](https://micronaut.io/) app to serve back hard-coded responses. We
-will be using the Kotlin [Fuel](https://github.com/kittinunf/fuel) library to
-make http requests to the API.  This application is not feature complete, and
-only serves to demonstrate consumer contracts between two applications.
+work. This includes an HTTP Client to call our API, as well as a tiny
+[Micronaut](https://micronaut.io/) app to serve hard-coded responses. We will
+be using the Kotlin [Fuel](https://github.com/kittinunf/fuel) library to make
+http requests to the API. This application is not feature complete, and only
+serves to demonstrate consumer contracts between two applications.
 
 This repository contains two modules, one for the _consumer_ and another for
 the _provider_.
 
-The API that we will develop should be an HTTP GET endpoint, taking a query parameter
-`id` which is the cityId of the location of interest.
-The API should then respond with the following JSON response body:
+The API that we will develop should be an HTTP `GET` endpoint, taking a query
+parameter `id` which is the `cityId` of the location of interest.  The API
+should then respond with the following JSON response body:
 
 ```json
 {
@@ -45,8 +45,10 @@ The API should then respond with the following JSON response body:
 ```
 
 
-The `workshop` branch of this repository contains an unimplemented application
+The `main` branch of this repository contains an unimplemented application
 that can be developed using the following pointers:
+
+The `solution` branch contains a working implementation for reference.
 
 ## Consumer in Kotlin
 
