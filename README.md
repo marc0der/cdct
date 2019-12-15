@@ -60,7 +60,7 @@ implementation("com.github.kittinunf.fuel:fuel-gson:2.2.1")
 testImplementation("au.com.dius:pact-jvm-consumer-junit_2.11:3.5.0")
 ```
   
-2. Create a new Kotlin test class `CunsumerPact`
+2. Create a new Kotlin test class `ConsumerPact`
 3. Extend the `au.com.dius.pact.consumer.ConsumerPactTestMk2`
 4. Implement the overrides for the `providerName` and `consumerName` methods.
 5. Implement the `createPact` method, observing the above contract.
